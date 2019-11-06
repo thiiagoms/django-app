@@ -1,2 +1,1 @@
-# python-playground
-:snake:
+# Simple django app
