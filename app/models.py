@@ -8,4 +8,4 @@ class MyUser(models.Model):
     photo = models.ImageField(upload_to='user_img')
 
     def __str__(self):
-        return f"{self.email} - {self.name}"
+        return f"{self.name}"

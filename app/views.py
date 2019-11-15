@@ -1,6 +1,32 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import MyUser 
+from .forms import CreateUserForm
+
 # Create your views here.
-def read_all_users(request):
+def create(request):
+    form = CreateUserForm(request.POST or None, request.FILES  or None)
+    if form.is_valid():
+        form.save()
+        return redirect("index")
+    return render(request, "form.html", {"form": form})
+
+def read(request):
     users = MyUser.objects.all()
     return render(request, "index.html", {'users': users})
+
+def update(request, id):
+    user = get_object_or_404(MyUser, pk=id)
+    form = CreateUserForm(request.POST or None, request.FILES or None, instance=user)
+    if form.is_valid():
+        form.save()
+        return redirect("index")
+    return render(request, "form.html", {"form": form})
+
+
+def delete(request, id):
+    user = get_object_or_404(MyUser, pk=id)
+    form = CreateUserForm(request.POST or None, request.FILES or None, instance=user)
+    if request.method == "POST":
+        user.delete()
+        return redirect("index")
+    return render(request, "confirm_delete.html", {"form":form})
