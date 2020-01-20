@@ -25,5 +25,3 @@ python manage.py migrate
 ```
  python manage.py runserver
 ```
-
-Dillinger is a cloud-enable
