@@ -29,4 +29,4 @@ def delete(request, id):
     if request.method == "POST":
         user.delete()
         return redirect("index")
-    return render(request, "confirm_delete.html", {"form":form})
+    return render(request, "confirm_delete.html", {"user": user})
