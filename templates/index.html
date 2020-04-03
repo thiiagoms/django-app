@@ -22,10 +22,23 @@
                 </th>
                 <th scope="col">Image</th>
                 </th>
-                {% endfor %}
+            {% endfor %}
             </tr>
         </tbody>
     </table>
     <a href="{% url 'create' %}">Create new user</a>
+</div>
+<div class="row">
+  <div class="col-12">
+    <form class="form-inline">
+        <div class="form-group mb-2">
+            <label for="searchUser" class="sr-only">Search user:  </label>         
+            <input type="text" name="searchuser" id="searchUser" class="form-control-plaintext" placeholder="Search user by name: ">
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+           <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+  </div>
 </div>
 {% endblock %}

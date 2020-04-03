@@ -11,7 +11,13 @@ def create(request):
     return render(request, "form.html", {"form": form})
 
 def read(request):
-    users = MyUser.objects.all()
+    search_user = request.GET.get('searchuser' or None)
+
+    if search_user:
+        users = MyUser.objects.all()
+        users = users.filter(name=search_user)
+    else:
+        users = MyUser.objects.all()
     return render(request, "index.html", {'users': users})
 
 def update(request, id):
